@@ -1,9 +1,10 @@
-import { Tabs } from 'expo-router';
+import { Link, Tabs } from 'expo-router';
 import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Pressable } from 'react-native';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -20,6 +21,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='home' color={color} />
           ),
+          headerRight:()=>(
+            <Link href='/search' asChild>
+              <Pressable>
+                {({pressed})=>(
+                  <FontAwesome
+                  name='search'
+                  size={25}
+                  color='gray'
+                    style={{marginRight:15,opacity:pressed?0.5:1}}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          )
         }}
       />
         <Tabs.Screen
